@@ -64,7 +64,10 @@ document.addEventListener('alpine:init', () => {
                     ['export-template', 'Export'], ['undo', 'Undo'], ['redo', 'Redo'],
                     ['gjs-open-import-webpage', 'Import'], ['canvas-clear', 'Clear canvas']]
                     .forEach(function(item) {
-                        pn.getButton('options', item[0]).set('attributes', {title: item[1], 'data-tooltip-pos': 'bottom'});
+                        btn = pn.getButton('options', item[0]);
+                        if(!btn)
+                            exit;
+                        btn.set('attributes', {title: item[1], 'data-tooltip-pos': 'bottom'});
                     });
                 [['open-sm', 'Style Manager'], ['open-layers', 'Layers'], ['open-blocks', 'Blocks']]
                     .forEach(function(item) {
