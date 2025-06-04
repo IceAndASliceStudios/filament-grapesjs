@@ -21,15 +21,15 @@ document.addEventListener('alpine:init', () => {
                     plugins: plugins,
                     ...settings
                 }
-                this.instance =  grapesjs.init( allSettings );
+                var editor = grapesjs.init( allSettings );
 
-                var pn = this.instance.Panels;
-                var modal = this.instance.Modal;
-                var cmdm = this.instance.Commands;
+                var pn = editor.Panels;
+                var modal = editor.Modal;
+                var cmdm = editor.Commands;
 
                 cmdm.add('canvas-clear', function() {
                     if(confirm('Are you sure to clean the canvas?')) {
-                        this.instance.runCommand('core:canvas-clear')
+                        editor.runCommand('core:canvas-clear')
                         setTimeout(function(){ localStorage.clear()}, 0)
                     }
                 });
@@ -53,7 +53,7 @@ document.addEventListener('alpine:init', () => {
                 pn.addButton('options', {
                     id: 'open-info',
                     className: 'fa fa-question-circle',
-                    command: function() { this.instance.runCommand('open-info') },
+                    command: function() { editor.runCommand('open-info') },
                     attributes: {
                         'title': 'About',
                         'data-tooltip-pos': 'bottom',
@@ -87,10 +87,10 @@ document.addEventListener('alpine:init', () => {
 
 
                 // Store and load events
-                this.instance.on('storage:load', function(e) { console.log('Loaded ', e) });
-                this.instance.on('storage:store', function(e) { console.log('Stored ', e) });
+                editor.on('storage:load', function(e) { console.log('Loaded ', e) });
+                editor.on('storage:store', function(e) { console.log('Stored ', e) });
 
-                this.instance.on('load', function() {
+                editor.on('load', function() {
                     var $ = grapesjs.$;
 
                     // Show borders by default
@@ -126,19 +126,19 @@ document.addEventListener('alpine:init', () => {
                     });
 
                     // Open block manager
-                    var openBlocksBtn = this.instance.Panels.getButton('views', 'open-blocks');
+                    var openBlocksBtn = editor.Panels.getButton('views', 'open-blocks');
                     openBlocksBtn && openBlocksBtn.set('active', 1);
                 });
 
-                this.instance.on('update', e => {
-                    var content = this.instance.getHtml({
+                editor.on('update', e => {
+                    var content = editor.getHtml({
                         cleanId: true
                     });
                     var extract = content.match(/<body\b[^>]*>([\s\S]*?)<\/body>/);
                     if(extract)
                         this.state = extract[1];
                     else
-                        this.state = this.instance.getHtml();
+                        this.state = editor.getHtml();
                 })
             }
         })
