@@ -23,9 +23,9 @@ document.addEventListener('alpine:init', () => {
                 }
                 this.instance =  grapesjs.init( allSettings );
 
-                let pn = this.instance.Panels;
-                let modal = this.instance.Modal;
-                let cmdm = this.instance.Commands;
+                var pn = this.instance.Panels;
+                var modal = this.instance.Modal;
+                var cmdm = this.instance.Commands;
 
                 cmdm.add('canvas-clear', function() {
                     if(confirm('Are you sure to clean the canvas?')) {
@@ -35,11 +35,11 @@ document.addEventListener('alpine:init', () => {
                 });
 
                 // Add info command
-                let mdlClass = 'gjs-mdl-dialog-sm';
-                let infoContainer = document.getElementById('info-panel');
+                var mdlClass = 'gjs-mdl-dialog-sm';
+                var infoContainer = document.getElementById('info-panel');
 
                 cmdm.add('open-info', function() {
-                    let mdlDialog = document.querySelector('.gjs-mdl-dialog');
+                    var mdlDialog = document.querySelector('.gjs-mdl-dialog');
                     mdlDialog.className += ' ' + mdlClass;
                     infoContainer.style.display = 'block';
                     modal.setTitle('About this demo');
@@ -70,11 +70,11 @@ document.addEventListener('alpine:init', () => {
                     .forEach(function(item) {
                         pn.getButton('views', item[0]).set('attributes', {title: item[1], 'data-tooltip-pos': 'bottom'});
                     });
-                let titles = document.querySelectorAll('*[title]');
+                var titles = document.querySelectorAll('*[title]');
 
-                for (let i = 0; i < titles.length; i++) {
-                    let el = titles[i];
-                    let title = el.getAttribute('title');
+                for (var i = 0; i < titles.length; i++) {
+                    var el = titles[i];
+                    var title = el.getAttribute('title');
                     title = title ? title.trim(): '';
                     if(!title)
                         break;
@@ -88,7 +88,7 @@ document.addEventListener('alpine:init', () => {
                 this.instance.on('storage:store', function(e) { console.log('Stored ', e) });
 
                 this.instance.on('load', function() {
-                    let $ = grapesjs.$;
+                    var $ = grapesjs.$;
 
                     // Show borders by default
                     pn.getButton('options', 'sw-visibility').set({
@@ -97,31 +97,31 @@ document.addEventListener('alpine:init', () => {
                     });
 
                     // Show logo with the version
-                    let logoCont = document.querySelector('.gjs-logo-cont');
+                    var logoCont = document.querySelector('.gjs-logo-cont');
                     document.querySelector('.gjs-logo-version').innerHTML = 'v' + grapesjs.version;
-                    let logoPanel = document.querySelector('.gjs-pn-commands');
+                    var logoPanel = document.querySelector('.gjs-pn-commands');
                     logoPanel.appendChild(logoCont);
 
 
                     // Load and show settings and style manager
-                    let openTmBtn = pn.getButton('views', 'open-tm');
+                    var openTmBtn = pn.getButton('views', 'open-tm');
                     openTmBtn && openTmBtn.set('active', 1);
-                    let openSm = pn.getButton('views', 'open-sm');
+                    var openSm = pn.getButton('views', 'open-sm');
                     openSm && openSm.set('active', 1);
 
                     // Remove trait view
                     pn.removeButton('views', 'open-tm');
 
                     // Add Settings Sector
-                    let traitsSector = $('<div class="gjs-sm-sector no-select">'+
+                    var traitsSector = $('<div class="gjs-sm-sector no-select">'+
                         '<div class="gjs-sm-sector-title"><span class="icon-settings fa fa-cog"></span> <span class="gjs-sm-sector-label">Settings</span></div>' +
                         '<div class="gjs-sm-properties" style="display: none;"></div></div>');
-                    let traitsProps = traitsSector.find('.gjs-sm-properties');
+                    var traitsProps = traitsSector.find('.gjs-sm-properties');
                     traitsProps.append($('.gjs-traits-cs'));
                     $('.gjs-sm-sectors').before(traitsSector);
                     traitsSector.find('.gjs-sm-sector-title').on('click', function(){
-                        let traitStyle = traitsProps.get(0).style;
-                        let hidden = traitStyle.display == 'none';
+                        var traitStyle = traitsProps.get(0).style;
+                        var hidden = traitStyle.display == 'none';
                         if (hidden) {
                             traitStyle.display = 'block';
                         } else {
@@ -130,7 +130,7 @@ document.addEventListener('alpine:init', () => {
                     });
 
                     // Open block manager
-                    let openBlocksBtn = this.instance.Panels.getButton('views', 'open-blocks');
+                    var openBlocksBtn = this.instance.Panels.getButton('views', 'open-blocks');
                     openBlocksBtn && openBlocksBtn.set('active', 1);
 
                     // Move Ad
@@ -138,10 +138,10 @@ document.addEventListener('alpine:init', () => {
                 });
 
                 this.instance.on('update', e => {
-                    let content = this.instance.getHtml({
+                    var content = this.instance.getHtml({
                         cleanId: true
                     });
-                    let extract = content.match(/<body\b[^>]*>([\s\S]*?)<\/body>/);
+                    var extract = content.match(/<body\b[^>]*>([\s\S]*?)<\/body>/);
                     if(extract)
                         this.state = extract[1];
                     else
