@@ -66,7 +66,7 @@ document.addEventListener('alpine:init', () => {
                     .forEach(function(item) {
                         btn = pn.getButton('options', item[0]);
                         if(!btn)
-                            exit;
+                            return;
                         btn.set('attributes', {title: item[1], 'data-tooltip-pos': 'bottom'});
                     });
                 [['open-sm', 'Style Manager'], ['open-layers', 'Layers'], ['open-blocks', 'Blocks']]
