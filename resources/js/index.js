@@ -96,13 +96,6 @@ document.addEventListener('alpine:init', () => {
                         'active': true,
                     });
 
-                    // Show logo with the version
-                    var logoCont = document.querySelector('.gjs-logo-cont');
-                    document.querySelector('.gjs-logo-version').innerHTML = 'v' + grapesjs.version;
-                    var logoPanel = document.querySelector('.gjs-pn-commands');
-                    logoPanel.appendChild(logoCont);
-
-
                     // Load and show settings and style manager
                     var openTmBtn = pn.getButton('views', 'open-tm');
                     openTmBtn && openTmBtn.set('active', 1);
@@ -132,9 +125,6 @@ document.addEventListener('alpine:init', () => {
                     // Open block manager
                     var openBlocksBtn = this.instance.Panels.getButton('views', 'open-blocks');
                     openBlocksBtn && openBlocksBtn.set('active', 1);
-
-                    // Move Ad
-                    $(container ? container : ".filament-grapesjs .grapesjs-wrapper").append($('.ad-cont'));
                 });
 
                 this.instance.on('update', e => {
