@@ -19,6 +19,7 @@ document.addEventListener('alpine:init', () => {
                     storageManager: false,
                     loadHtml: state,
                     plugins: plugins,
+                    selectorManager: { escapeName: name => name },
                     ...settings
                 }
                 var editor = grapesjs.init( allSettings );
