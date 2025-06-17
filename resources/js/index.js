@@ -50,17 +50,7 @@ document.addEventListener('alpine:init', () => {
                         mdlDialog.className = mdlDialog.className.replace(mdlClass, '');
                     })
                 });
-
-                pn.addButton('options', {
-                    id: 'open-info',
-                    className: 'fa fa-question-circle',
-                    command: function() { editor.runCommand('open-info') },
-                    attributes: {
-                        'title': 'About',
-                        'data-tooltip-pos': 'bottom',
-                    },
-                });
-
+                
                 [['sw-visibility', 'Show Borders'], ['preview', 'Preview'], ['fullscreen', 'Fullscreen'],
                     ['export-template', 'Export'], ['undo', 'Undo'], ['redo', 'Redo'],
                     ['gjs-open-import-webpage', 'Import'], ['canvas-clear', 'Clear canvas']]
