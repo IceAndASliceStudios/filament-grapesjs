@@ -35,22 +35,6 @@ document.addEventListener('alpine:init', () => {
                     }
                 });
 
-                // Add info command
-                var mdlClass = 'gjs-mdl-dialog-sm';
-                var infoContainer = document.getElementById('info-panel');
-
-                cmdm.add('open-info', function() {
-                    var mdlDialog = document.querySelector('.gjs-mdl-dialog');
-                    mdlDialog.className += ' ' + mdlClass;
-                    infoContainer.style.display = 'block';
-                    modal.setTitle('About this demo');
-                    modal.setContent(infoContainer);
-                    modal.open();
-                    modal.getModel().once('change:open', function() {
-                        mdlDialog.className = mdlDialog.className.replace(mdlClass, '');
-                    })
-                });
-                
                 [['sw-visibility', 'Show Borders'], ['preview', 'Preview'], ['fullscreen', 'Fullscreen'],
                     ['export-template', 'Export'], ['undo', 'Undo'], ['redo', 'Redo'],
                     ['gjs-open-import-webpage', 'Import'], ['canvas-clear', 'Clear canvas']]
