@@ -114,6 +114,16 @@ document.addEventListener('alpine:init', () => {
                         this.state = extract[1];
                     else
                         this.state = editor.getHtml();
+
+                    var cssInput = document.querySelector("[name='css']") ?? null;
+                    if (cssInput) {
+                        cssInput.state = editor.getCss();
+                    }
+
+                    var jsInput = document.querySelector("[name='js']") ?? null;
+                    if (jsInput) {
+                        jsInput.state = editor.getJs();
+                    }
                 })
             }
         })
