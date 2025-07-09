@@ -117,17 +117,13 @@ document.addEventListener('alpine:init', () => {
                 })
 
                 editor.on('change', e => {
-                    var cssInput = document.querySelector("[name='css']") ?? null;
-                    if (cssInput) {
-                        console.log('update css input');
+                    var cssInput = document.querySelector("[id='css']") ?? null;
+                    if (cssInput)
                         cssInput.value = editor.getCss();
-                    }
 
-                    var jsInput = document.querySelector("[name='js']") ?? null;
-                    if (jsInput) {
-                        console.log('update js input');
+                    var jsInput = document.querySelector("[id='js']") ?? null;
+                    if (jsInput)
                         jsInput.value = editor.getJs();
-                    }
                 })
             }
         })
