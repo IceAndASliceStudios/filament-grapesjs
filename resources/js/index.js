@@ -9,6 +9,7 @@ document.addEventListener('alpine:init', () => {
             settings: settings,
             init() {
                 let enabledTools = {};
+                var cssInput = document.querySelector("[id='css']") ?? null;
 
                 let allSettings = {
                     height: minHeight + 'px',
@@ -18,6 +19,7 @@ document.addEventListener('alpine:init', () => {
                     noticeOnUnload: false,
                     storageManager: false,
                     loadHtml: state,
+                    style: cssInput.value,
                     plugins: plugins,
                     selectorManager: { escapeName: name => name },
                     ...settings
@@ -121,12 +123,6 @@ document.addEventListener('alpine:init', () => {
                     if (cssInput) {
                         cssInput.value = editor.getCss();
                         cssInput.dispatchEvent(new Event('input'));
-                    }
-
-                    var jsInput = document.querySelector("[id='js']") ?? null;
-                    if (jsInput) {
-                        jsInput.value = editor.getJs();
-                        jsInput.dispatchEvent(new Event('input'));
                     }
                 })
             }
