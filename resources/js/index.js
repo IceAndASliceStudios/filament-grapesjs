@@ -9,8 +9,6 @@ document.addEventListener('alpine:init', () => {
             settings: settings,
             init() {
                 let enabledTools = {};
-                var cssInput = document.querySelector("[id='css']") ?? null;
-
                 let allSettings = {
                     height: minHeight + 'px',
                     container: container ? container : ".filament-grapesjs .grapesjs-wrapper",
@@ -19,7 +17,6 @@ document.addEventListener('alpine:init', () => {
                     noticeOnUnload: false,
                     storageManager: false,
                     loadHtml: state,
-                    style: cssInput.value,
                     plugins: plugins,
                     selectorManager: { escapeName: name => name },
                     ...settings
@@ -70,6 +67,10 @@ document.addEventListener('alpine:init', () => {
                 editor.on('load', function() {
                     var $ = grapesjs.$;
 
+                    var cssInput = document.querySelector("[id='something']") ?? null;
+                    var value = cssInput.value;
+                    editor.setStyle(value);
+
                     // Show borders by default
                     pn.getButton('options', 'sw-visibility').set({
                         command: 'core:component-outline',
@@ -108,6 +109,13 @@ document.addEventListener('alpine:init', () => {
                 });
 
                 editor.on('update', e => {
+                    console.log('update', e);
+                    var cssInput = document.querySelector("[id='something']") ?? null;
+                    if (cssInput) {
+                        cssInput.value = editor.getCss();
+                        cssInput.dispatchEvent(new Event('input'));
+                    }
+
                     var content = editor.getHtml({
                         cleanId: true
                     });
@@ -116,14 +124,6 @@ document.addEventListener('alpine:init', () => {
                         this.state = extract[1];
                     else
                         this.state = editor.getHtml();
-                })
-
-                editor.on('change', e => {
-                    var cssInput = document.querySelector("[id='css']") ?? null;
-                    if (cssInput) {
-                        cssInput.value = editor.getCss();
-                        cssInput.dispatchEvent(new Event('input'));
-                    }
                 })
             }
         })
