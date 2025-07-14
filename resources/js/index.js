@@ -67,7 +67,7 @@ document.addEventListener('alpine:init', () => {
                 editor.on('load', function() {
                     var $ = grapesjs.$;
 
-                    var cssInput = document.querySelector("[id='something']") ?? null;
+                    var cssInput = document.querySelector("[id='css']") ?? null;
                     var value = cssInput.value;
                     editor.setStyle(value);
 
@@ -110,7 +110,7 @@ document.addEventListener('alpine:init', () => {
 
                 editor.on('update', e => {
                     console.log('update', e);
-                    var cssInput = document.querySelector("[id='something']") ?? null;
+                    var cssInput = document.querySelector("[id='css']") ?? null;
                     if (cssInput) {
                         cssInput.value = editor.getCss();
                         cssInput.dispatchEvent(new Event('input'));
