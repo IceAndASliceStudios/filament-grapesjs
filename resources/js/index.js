@@ -109,7 +109,6 @@ document.addEventListener('alpine:init', () => {
                 });
 
                 editor.on('update', e => {
-                    console.log('update', e);
                     var cssInput = document.querySelector("[id='css']") ?? null;
                     if (cssInput) {
                         cssInput.value = editor.getCss();
